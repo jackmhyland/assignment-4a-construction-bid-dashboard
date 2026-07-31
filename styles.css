@@ -1,0 +1,381 @@
+:root {
+  --navy: #1f4e78;
+  --navy-dark: #163a58;
+  --bg: #f4f6f8;
+  --card-bg: #ffffff;
+  --border: #d7dde3;
+  --text: #1c2b36;
+  --text-muted: #5a6b78;
+  --high-bg: #d9f2df;
+  --high-text: #1c6b34;
+  --medium-bg: #fff3cd;
+  --medium-text: #8a6400;
+  --low-bg: #fbdcdf;
+  --low-text: #a3212f;
+  --risk-high-bg: #fbdcdf;
+  --risk-high-text: #a3212f;
+  --risk-medium-bg: #fff3cd;
+  --risk-medium-text: #8a6400;
+  --risk-low-bg: #d9f2df;
+  --risk-low-text: #1c6b34;
+  --unknown-bg: #e9e2f7;
+  --unknown-text: #5b3aa0;
+  --flag-color: #c1440e;
+  --radius: 8px;
+  --shadow: 0 1px 3px rgba(20, 30, 40, 0.08), 0 1px 2px rgba(20, 30, 40, 0.06);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.45;
+}
+
+.app-header {
+  background: linear-gradient(135deg, var(--navy), var(--navy-dark));
+  color: #fff;
+  padding: 28px 20px;
+}
+.header-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.app-header h1 {
+  margin: 0 0 8px 0;
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+.subtitle {
+  margin: 0;
+  max-width: 900px;
+  color: #dce8f2;
+  font-size: 0.95rem;
+}
+
+.disclaimer {
+  background: #fff3cd;
+  color: #6b4e00;
+  border-bottom: 1px solid #e7c766;
+  padding: 10px 20px;
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+}
+
+/* Summary cards */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.card-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.card-value {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+.card-high .card-value { color: var(--high-text); }
+
+/* Controls */
+.controls {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 20px;
+  margin-bottom: 20px;
+}
+.controls-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-end;
+}
+.controls-row + .controls-row {
+  margin-top: 14px;
+}
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 160px;
+}
+.search-group {
+  flex: 1 1 320px;
+  min-width: 260px;
+}
+.control-group label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.control-group input,
+.control-group select {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  background: #fff;
+  color: var(--text);
+}
+.control-group input:focus,
+.control-group select:focus {
+  outline: 2px solid var(--navy);
+  outline-offset: 1px;
+}
+#reset-filters {
+  padding: 8px 16px;
+  background: var(--navy);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+#reset-filters:hover { background: var(--navy-dark); }
+
+.results-count {
+  margin-top: 14px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Table */
+.table-section {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.table-scroll {
+  overflow-x: auto;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 1200px;
+  font-size: 0.85rem;
+}
+thead th {
+  background: var(--navy);
+  color: #fff;
+  text-align: left;
+  padding: 10px 10px;
+  position: sticky;
+  top: 0;
+  white-space: nowrap;
+  font-weight: 600;
+}
+tbody td {
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+tbody tr:hover {
+  background: #f0f5fa;
+}
+tbody tr:nth-child(even) {
+  background: #fafcfe;
+}
+tbody tr:nth-child(even):hover {
+  background: #f0f5fa;
+}
+
+.no-results {
+  padding: 24px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.badge-high { background: var(--high-bg); color: var(--high-text); }
+.badge-medium { background: var(--medium-bg); color: var(--medium-text); }
+.badge-low { background: var(--low-bg); color: var(--low-text); }
+
+.risk-high { background: var(--risk-high-bg); color: var(--risk-high-text); }
+.risk-medium { background: var(--risk-medium-bg); color: var(--risk-medium-text); }
+.risk-low { background: var(--risk-low-bg); color: var(--risk-low-text); }
+.risk-unknown { background: var(--unknown-bg); color: var(--unknown-text); }
+
+/* Client Reliability has the opposite polarity from Payment Risk:
+   High reliability = green (good), Low reliability = red (caution),
+   Unknown = gray/purple. Kept as its own class set so it can never be
+   confused with (or accidentally reuse) the risk-* classes above. */
+.reliability-high { background: var(--high-bg); color: var(--high-text); }
+.reliability-medium { background: var(--medium-bg); color: var(--medium-text); }
+.reliability-low { background: var(--low-bg); color: var(--low-text); }
+.reliability-unknown { background: var(--unknown-bg); color: var(--unknown-text); }
+
+.fit-strong { background: var(--high-bg); color: var(--high-text); }
+.fit-moderate { background: var(--medium-bg); color: var(--medium-text); }
+.fit-limited { background: var(--low-bg); color: var(--low-text); }
+.fit-unclear { background: var(--unknown-bg); color: var(--unknown-text); }
+
+.flags-cell {
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+.flag-icon {
+  margin-right: 4px;
+  cursor: help;
+}
+
+.details-btn {
+  padding: 6px 12px;
+  background: #fff;
+  border: 1px solid var(--navy);
+  color: var(--navy);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.details-btn:hover {
+  background: var(--navy);
+  color: #fff;
+}
+
+.app-footer {
+  margin-top: 24px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+.app-footer code {
+  background: #e9edf1;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 25, 35, 0.55);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 16px;
+  overflow-y: auto;
+  z-index: 100;
+}
+.modal-overlay[hidden] { display: none; }
+.modal {
+  background: #fff;
+  border-radius: var(--radius);
+  max-width: 720px;
+  width: 100%;
+  padding: 28px 30px;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+}
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+.modal-close:hover { color: var(--text); }
+
+.modal h2 {
+  margin: 0 0 4px 0;
+  color: var(--navy);
+  font-size: 1.3rem;
+}
+.modal .modal-subtitle {
+  margin: 0 0 18px 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.modal-section {
+  margin-bottom: 16px;
+}
+.modal-section h3 {
+  margin: 0 0 6px 0;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
+}
+.modal-section p {
+  margin: 0;
+  font-size: 0.92rem;
+}
+.modal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 24px;
+  margin-bottom: 18px;
+}
+.modal-grid div {
+  font-size: 0.88rem;
+}
+.modal-grid dt {
+  font-weight: 600;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  text-transform: uppercase;
+}
+.modal-grid dd {
+  margin: 2px 0 0 0;
+}
+.warning-box {
+  background: #fff3cd;
+  border: 1px solid #e7c766;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 0.86rem;
+  color: #6b4e00;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 900px) {
+  .summary-cards { grid-template-columns: repeat(2, 1fr); }
+  .modal-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .summary-cards { grid-template-columns: 1fr; }
+  .app-header h1 { font-size: 1.35rem; }
+}

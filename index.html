@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Construction Bid Opportunity Dashboard</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="app-header">
+  <div class="header-inner">
+    <h1>Construction Bid Opportunity Dashboard</h1>
+    <p class="subtitle">A review tool for the 10 approved construction bid opportunities from the Stage 1 consolidated dataset. Search, filter, and sort projects, then open a project's detail view for the full priority explanation and concerns.</p>
+  </div>
+</header>
+
+<div class="disclaimer">
+  <strong>Internal use only:</strong> This dashboard supports bid review and comparison. It does not make final pursue-or-decline decisions, submit bids, contact clients, or commit staffing or financial resources. A company manager must make all final calls.
+</div>
+
+<main class="container">
+
+  <section class="summary-cards" aria-label="Summary metrics">
+    <div class="card">
+      <span class="card-label">Total Opportunities</span>
+      <span class="card-value" id="card-total">--</span>
+    </div>
+    <div class="card card-high">
+      <span class="card-label">High Priority Opportunities</span>
+      <span class="card-value" id="card-high">--</span>
+    </div>
+    <div class="card">
+      <span class="card-label">Total Potential Contract Value</span>
+      <span class="card-value" id="card-contract-value">--</span>
+    </div>
+    <div class="card">
+      <span class="card-label">Total Estimated Profit</span>
+      <span class="card-value" id="card-profit">--</span>
+    </div>
+  </section>
+
+  <section class="controls" aria-label="Search, filter, and sort controls">
+    <div class="controls-row">
+      <div class="control-group search-group">
+        <label for="search-input">Search</label>
+        <input type="text" id="search-input" placeholder="Search by Project ID, project name, client, or city...">
+      </div>
+    </div>
+
+    <div class="controls-row filters-row">
+      <div class="control-group">
+        <label for="filter-priority">Priority</label>
+        <select id="filter-priority">
+          <option value="">All Priorities</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label for="filter-type">Project Type</label>
+        <select id="filter-type">
+          <option value="">All Types</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label for="filter-competition">Competition Level</label>
+        <select id="filter-competition">
+          <option value="">All Levels</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label for="filter-risk">Payment Risk</label>
+        <select id="filter-risk">
+          <option value="">All Risk Levels</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label for="filter-fit">Company Experience Fit</label>
+        <select id="filter-fit">
+          <option value="">All Fit Levels</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="controls-row sort-row">
+      <div class="control-group">
+        <label for="sort-field">Sort by</label>
+        <select id="sort-field">
+          <option value="priority">Priority</option>
+          <option value="estProfit">Estimated Profit</option>
+          <option value="profitMargin">Profit Margin</option>
+          <option value="contractValue">Contract Value</option>
+          <option value="distanceMiles">Distance</option>
+          <option value="bidDueDate">Bid Due Date</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label for="sort-direction">Direction</label>
+        <select id="sort-direction">
+          <option value="desc">Highest / Latest first</option>
+          <option value="asc">Lowest / Earliest first</option>
+        </select>
+      </div>
+      <div class="control-group reset-group">
+        <label>&nbsp;</label>
+        <button id="reset-filters" type="button">Reset Filters</button>
+      </div>
+    </div>
+
+    <div class="results-count" id="results-count" aria-live="polite"></div>
+  </section>
+
+  <section class="table-section" aria-label="Project table">
+    <div class="table-scroll">
+      <table id="project-table">
+        <thead>
+          <tr>
+            <th>Priority</th>
+            <th>Project ID</th>
+            <th>Project Name</th>
+            <th>Client</th>
+            <th>Type</th>
+            <th>Location</th>
+            <th>Distance (mi)</th>
+            <th>Start Date</th>
+            <th>Bid Due</th>
+            <th>Contract Value</th>
+            <th>Est. Profit</th>
+            <th>Margin</th>
+            <th>Competition</th>
+            <th>Payment Risk</th>
+            <th>Experience Fit</th>
+            <th>Flags</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <!-- Rows injected by script.js -->
+        </tbody>
+      </table>
+    </div>
+    <p class="no-results" id="no-results" hidden>No projects match the current search and filters. Try Reset Filters.</p>
+  </section>
+
+  <footer class="app-footer">
+    <p>Source data: <code>consolidated_bid_opportunities.xlsx</code> (Stage 1, approved). All 10 project records, 26 data fields, and priority rankings are shown exactly as approved. No project or financial information has been invented, removed, or altered.</p>
+  </footer>
+
+</main>
+
+<div class="modal-overlay" id="modal-overlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal-close" id="modal-close" aria-label="Close detail view">&times;</button>
+    <div id="modal-content"><!-- injected by script.js --></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
